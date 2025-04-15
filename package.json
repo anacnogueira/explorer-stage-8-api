@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ana Claudia Nogueira",
+  "license": "ISC",
+  "description": "API developed in Rocketseat's Explorer program",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
