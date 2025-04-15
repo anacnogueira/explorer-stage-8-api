@@ -7,6 +7,7 @@
   },
   "author": "Ana Claudia Nogueira",
   "license": "ISC",
+  "type": "module",
   "description": "API developed in Rocketseat's Explorer program",
   "dependencies": {
     "express": "^5.1.0"
