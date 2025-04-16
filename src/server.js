@@ -2,8 +2,9 @@ import express from "express";
 
 const app = express();
 
-app.get("/", (request, response) => {
-  response.send("Hello, World!");
+app.get("/message/:user/:id", (request, response) => {
+  const { user, id } = request.params;
+  response.send(`User: ${user}, Message id: ${id}`);
 });
 
 const PORT = 3000;
