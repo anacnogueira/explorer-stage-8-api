@@ -1,13 +1,12 @@
 import { Router } from "express";
+import { UsersController } from "../controllers/UsersController.js";
 
 export const userRoutes = Router();
+const userController = new UsersController();
 
 userRoutes.get("/", (request, response) => {
   const { page, limit } = request.query;
   response.send(`Page: ${page}, Show: ${limit} registers`);
 });
 
-userRoutes.post("/", (request, response) => {
-  const { name, email, password } = request.body;
-  response.json({ name, email, password });
-});
+userRoutes.post("/", userController.create);
