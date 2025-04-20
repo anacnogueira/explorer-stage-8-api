@@ -1,11 +1,13 @@
 import { AppError } from "./utils/AppError.js";
 import express, { response } from "express";
 import { routes } from "./routes/index.js";
+import { sqlConnection as database } from "./database/sqlite/index.js";
 
 const app = express();
 app.use(express.json());
 
 app.use(routes);
+database();
 
 const PORT = 3000;
 
