@@ -13,6 +13,11 @@ export class UsersController {
       throw new Exception("This email is already in use");
     }
 
+    await database.run(
+      "INSERT INTO users (name, email, password) VALUES(?, ?, ?)",
+      [name, email, password]
+    );
+
     return response.status(201).json({});
   }
 }
