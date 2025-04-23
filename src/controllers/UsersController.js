@@ -1,4 +1,4 @@
-import { hash } from "bcryptjs";
+import { hash, compare } from "bcryptjs";
 import { AppError } from "../utils/AppError.js";
 import { sqlConnection } from "../database/sqlite/index.js";
 export class UsersController {
