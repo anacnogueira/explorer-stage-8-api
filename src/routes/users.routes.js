@@ -11,3 +11,4 @@ userRoutes.get("/", (request, response) => {
 });
 
 userRoutes.post("/", userController.create);
+userRoutes.put("/:id", userController.update);
