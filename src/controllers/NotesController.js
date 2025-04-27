@@ -1,6 +1,18 @@
 import { connection } from "../database/knex/index.js";
 
 export class NotesController {
+  async index(request, response) {
+    const { user_id } = request.query;
+
+    const notes = await connection("notes")
+      .where({
+        user_id,
+      })
+      .orderBy("title");
+
+    return response.json({ notes });
+  }
+
   async create(request, response) {
     const { title, description, tags, links } = request.body;
     const { user_id } = request.params;
