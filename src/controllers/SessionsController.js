@@ -1,8 +1,11 @@
 import { compare } from "bcryptjs";
 import { connection } from "../database/knex/index.js";
 import { AppError } from "../utils/AppError.js";
+import authConfig from "../configs/auth.js";
+import pkg from "jsonwebtoken";
 export class SessionsController {
   async create(request, response) {
+    const { sign } = pkg;
     const invalidMessage = "Email e/or password invalid.";
     const { email, password } = request.body;
 
@@ -18,6 +21,12 @@ export class SessionsController {
       throw new AppError(invalidMessage, 401);
     }
 
-    return response.json(user);
+    const { secret, expiresIn } = authConfig.jwt;
+    const token = sign({}, secret, {
+      subject: String(user.id),
+      expiresIn,
+    });
+
+    return response.json({ user, token });
   }
 }
