@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UsersController } from "../controllers/UsersController.js";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticated.js";
 
 export const userRoutes = Router();
 
@@ -11,4 +12,4 @@ userRoutes.get("/", (request, response) => {
 });
 
 userRoutes.post("/", userController.create);
-userRoutes.put("/:id", userController.update);
+userRoutes.put("/", ensureAuthenticated, userController.update);

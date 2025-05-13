@@ -26,10 +26,12 @@ export class UsersController {
 
   async update(request, response) {
     const { name, email, password, old_password } = request.body;
-    const { id } = request.params;
+    const user_id = request.user.id;
 
     const database = await sqlConnection();
-    const user = await database.get("SELECT * from users WHERE id = (?)", [id]);
+    const user = await database.get("SELECT * from users WHERE id = (?)", [
+      user_id,
+    ]);
 
     if (!user) {
       throw new AppError("User not found");
@@ -70,7 +72,7 @@ export class UsersController {
       password = ?,
       updated_at = DATETIME('NOW')
       WHERE id = ?`,
-      [user.name, user.email, user.password, id]
+      [user.name, user.email, user.password, user_id]
     );
 
     return response.status(200).json({});
