@@ -1,0 +1,25 @@
+import pkg from "jsonwebtoken";
+import { AppError } from "../utils/AppError.js";
+import authConfig from "../configs/auth.js";
+
+export function ensureAuthenticated(request, response, next) {
+  const authHeader = request.headers.authorization;
+  const { verify } = pkg;
+
+  if (!authHeader) {
+    throw new AppError("JWT Token not provided", 401);
+  }
+
+  const [, token] = authHeader.split(" ");
+
+  try {
+    const { sub: user_id } = verify(token, authConfig.jwt.secret);
+    request.user = {
+      id: Numb,
+    };
+
+    return next();
+  } catch (error) {
+    throw new AppError("Invalid JWT Token", 401);
+  }
+}
