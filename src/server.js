@@ -3,8 +3,10 @@ import { AppError } from "./utils/AppError.js";
 import express, { response } from "express";
 import { routes } from "./routes/index.js";
 import uploadConfig from "./configs/upload.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/files", express.static(uploadConfig.UPLOAD_FOLDER));
