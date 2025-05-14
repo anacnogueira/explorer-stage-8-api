@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import uploadConfig from "../configs/upload";
+import uploadConfig from "../configs/upload.js";
 import { diskStorage } from "multer";
 
 export class DiskStorage {
