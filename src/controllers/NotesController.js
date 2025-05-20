@@ -36,7 +36,7 @@ export class NotesController {
       };
     });
 
-    return response.json(notes);
+    return response.json(notesWithTags);
   }
 
   async create(request, response) {
