@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { migrationsRun } from "./database/sqlite/migrations/index.js";
 import { AppError } from "./utils/AppError.js";
 import express, { response } from "express";
@@ -15,7 +16,7 @@ migrationsRun();
 
 app.use(routes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3333;
 
 app.use((error, request, response, next) => {
   if (error instanceof AppError) {
